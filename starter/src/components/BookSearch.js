@@ -5,13 +5,13 @@ import * as BooksAPI from '../BooksAPI';
 
 
 export default function BookSearch({ MB, S, SS, SB }) {
-    const mergedBooks = MB;
+    const result = MB;
     const search = S;
     const setSearch = SS;
     const setBooks = SB;
 
     const updateBooks = (book, event) => {
-        let current = mergedBooks;
+        let current = result;
         const bookToUpdate = current.filter(cBook => cBook.id === book)[0];
         BooksAPI.update(bookToUpdate, event.target.value).then(response => {
             setBooks(current)
@@ -32,7 +32,7 @@ export default function BookSearch({ MB, S, SS, SB }) {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {mergedBooks.map(b => (
+                    {result.map(b => (
                         <li key={b.id}>
                             <Book book={b} updateShelf={updateBooks} />
                         </li>

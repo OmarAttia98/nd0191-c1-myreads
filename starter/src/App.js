@@ -9,17 +9,11 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 
 function App() {
   const [books, setBooks] = useState([])
-  const [BookIDMap, setBookIDMap] = useState(new Map());
   const [search, setSearch] = useState("");
   const [searchBooks] = useSearch(search);
-  const [mergedBooks, setMergedBooks] = useState([]);
+  const [result, setResult] = useState([]);
 
 
-  const BookMap = (books) => {
-    const map = new Map();
-    books.map(book => map.set(book.id, book));
-    return map;
-  }
 
   const updateShelf = (bookId, event) => {
     let fetchedBooks = books;
@@ -29,26 +23,17 @@ function App() {
     });
   };
 
-
   useEffect(() => {
-
     const result = searchBooks.map(book => {
-      if (BookIDMap.has(book.id)) {
-        return BookIDMap.get(book.id);
-      } else {
         return book;
-      }
     })
-    setMergedBooks(result);
-  }, [searchBooks, BookIDMap])
-
+    setResult(result);
+  }, [searchBooks])
 
   useEffect(() => {
-
     BooksAPI.getAll()
       .then(data => {
         setBooks(data)
-        setBookIDMap(BookMap(data))
       }
       );
   }, [books])
@@ -59,13 +44,13 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/search">
-            <BookSearch MB={mergedBooks} SS={setSearch} S={search} SB={setBooks} /></Route>
+            <BookSearch MB={result} SS={setSearch} S={search} SB={setBooks} /></Route>
           <div>
             <Route path="/">
               <ListBooks fetchedBooks={books} updateShelf={updateShelf} />
               <div className="open-search">
                 <Link to="/search">
-                  <a>Add a Book</a>
+                  <a></a>
                 </Link>
               </div>
             </Route>

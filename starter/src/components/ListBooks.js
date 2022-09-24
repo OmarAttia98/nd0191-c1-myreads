@@ -9,19 +9,16 @@ export default function ListBooks( { fetchedBooks, updateShelf } ) {
         </div>
         <div className="list-books-content">
           <BookShelf
-            key="currently"
             books={fetchedBooks.filter(book => book.shelf === "currentlyReading")}
             updateShelf={updateShelf}
             shelfTitle="Currently Reading"
           />
           <BookShelf
-            key="wantToRead"
             books={fetchedBooks.filter(book => book.shelf === "wantToRead")}
             updateShelf={updateShelf}
             shelfTitle="Want to Read"
           />
           <BookShelf
-            key="read"
             books={fetchedBooks.filter(book => book.shelf === "read")}
             updateShelf={updateShelf}
             shelfTitle="Read"

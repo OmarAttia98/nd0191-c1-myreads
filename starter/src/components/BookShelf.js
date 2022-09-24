@@ -9,9 +9,9 @@ export default function BookShelf({ books, shelfTitle, updateShelf }) {
         </h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
-            {books.filter((sbook)=>(sbook.imageLinks)).map(sbook =>
-              <li key={sbook.id}>
-                <Book book={sbook} updateShelf={updateShelf}/>
+            {books.filter((selectedbook)=>(selectedbook.imageLinks)).map(selectedbook =>
+              <li key={selectedbook.id}>
+                <Book book={selectedbook} updateShelf={updateShelf}/>
               </li>
             )}
           </ol>
