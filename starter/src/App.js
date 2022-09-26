@@ -18,9 +18,7 @@ function App() {
   const updateShelf = (bookId, event) => {
     let fetchedBooks = books;
     const book = fetchedBooks.filter(book => book.id === bookId)[0];
-    BooksAPI.update(book, event.target.value).then(response => {
-      setBooks(fetchedBooks)
-    });
+    BooksAPI.update(book, event.target.value);
   };
 
   useEffect(() => {
@@ -44,7 +42,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/search">
-            <BookSearch MB={result} SS={setSearch} S={search} SB={setBooks} /></Route>
+            <BookSearch MB={result} SS={setSearch} S={search} SB={setBooks} B={books} /></Route>
           <div>
             <Route path="/">
               <ListBooks fetchedBooks={books} updateShelf={updateShelf} />

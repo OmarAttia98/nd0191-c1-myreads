@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI';
 
 
-export default function BookSearch({ MB, S, SS, SB }) {
+export default function BookSearch({ MB, S, SS, SB, B }) {
     const result = MB;
     const search = S;
     const setSearch = SS;
     const setBooks = SB;
+    const currentBooks = B;
 
     const updateBooks = (book, event) => {
         let current = result;
@@ -32,11 +33,14 @@ export default function BookSearch({ MB, S, SS, SB }) {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {result.map(b => (
-                        <li key={b.id}>
+                    {result.map(b => { 
+                        let foundBook = currentBooks.find(book => book.title === b.title);
+                        if(foundBook){b.shelf = foundBook.shelf}
+                        return (<li key={b.id}>
                             <Book book={b} updateShelf={updateBooks} />
-                        </li>
-                    ))}
+                        </li>)
+                    }
+                    )}
                 </ol>
             </div>
         </div>)

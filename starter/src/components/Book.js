@@ -9,7 +9,7 @@ export default function Book({ book, updateShelf }) {
           style={{
             width: '100%',
             height: '100%',
-            backgroundImage: "url(" + book.imageLinks.thumbnail + ")"
+            backgroundImage: "url(" + book.imageLinks?.thumbnail  + ")"
           }}
         />
         <div className="book-shelf-changer">
@@ -31,7 +31,7 @@ export default function Book({ book, updateShelf }) {
       <div className="book-authors">
         {book.authors &&
           <div className="book-authors">
-            {book.authors[0]}
+            {book.authors.join(', ')}
           </div>}
       </div>
     </div>
