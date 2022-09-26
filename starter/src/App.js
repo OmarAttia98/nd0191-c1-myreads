@@ -47,9 +47,7 @@ function App() {
             <Route path="/">
               <ListBooks fetchedBooks={books} updateShelf={updateShelf} />
               <div className="open-search">
-                <Link to="/search">
-                  <a></a>
-                </Link>
+                <Link to="/search"> Add a Book </Link>
               </div>
             </Route>
           </div>

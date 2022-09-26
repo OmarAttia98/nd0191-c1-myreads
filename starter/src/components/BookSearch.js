@@ -34,6 +34,8 @@ export default function BookSearch({ MB, S, SS, SB, B }) {
             <div className="search-books-results">
                 <ol className="books-grid">
                     {result.map(b => { 
+                        b.shelf = "none";
+                        console.log(b.shelf);
                         let foundBook = currentBooks.find(book => book.title === b.title);
                         if(foundBook){b.shelf = foundBook.shelf}
                         return (<li key={b.id}>

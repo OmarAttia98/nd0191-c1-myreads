@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 export default function Book({ book, updateShelf }) {
   return (
@@ -14,7 +15,7 @@ export default function Book({ book, updateShelf }) {
         />
         <div className="book-shelf-changer">
           <select value={book.shelf} onChange={event => updateShelf(book.id, event)}>
-            <option value="none" disabled>
+            <option disabled>
               Move to...
             </option>
             <option hidden></option>
@@ -36,4 +37,8 @@ export default function Book({ book, updateShelf }) {
       </div>
     </div>
   )
+}
+
+Book.propTypes = {
+  book: PropTypes.object
 }
